@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import ReactEcharts from 'echarts-for-react'
 import { Card, 
   Steps,
-  Button,
+  Divider,
   message} from 'antd';
 import './introduction.less'
 
@@ -16,45 +16,52 @@ const labelData = [
 
 const { Step } = Steps;
 
-const steps = [
-  {
-    title: '第一步',
-    content: '操作的患者不在库中，在患者管理页面新建患者，若已经在库中，跳过该步骤'
-  },
-  {
-    title: '第二步',
-    content: '对患者进行新建任务，选择任务类型并填写干预条件',
-  },
-  {
-    title: '第三步',
-    content: '若为WCST任务，实验结束后更新测试值',
-  },
-  {
-    title: '第四步',
-    content: '点击数据存储关联，进行数据关联，匹配对应的红外图像',
-  },
-];
 
+// const tabList = [
+//   {
+//     key: 'tab1',
+//     tab: 'tab1',
+//   },
+//   {
+//     key: 'tab2',
+//     tab: 'tab2',
+//   },
+//   {
+//     key: 'tab3',
+//     tab: 'tab3',
+//   },
+//   {
+//     key: 'tab4',
+//     tab: 'tab4',
+//   },
+// ];
+
+// const contentList = {
+//   tab1: <p>操作的患者不在库中，在患者管理页面新建患者，若已经在库中，跳过该步骤</p>,
+//   tab2: <p>对患者进行新建任务，选择任务类型并填写干预条件</p>,
+//   tab3: <p>若为WCST任务，实验结束后更新测试值</p>,
+//   tab4: <p>点击数据存储关联，进行数据关联，匹配对应的红外图像</p>,
+// };
 
 class Introduction extends Component {
   constructor(props) {
     super(props);
     this.state = {
       labelData: [],
+      // key: 'tab1',
       current: 0,
     }
   }
 
-// 控制当前所处状态
-  next() {
-    const current = this.state.current + 1;
-    this.setState({ current });
-  }
+  // onTabChange = (key, type) => {
+  //   console.log(key, type);
+  //   this.setState({ [type]: key });
+  // };
 
-  prev() {
-    const current = this.state.current - 1;
+  onChange = current => {
+    console.log('onChange:', current);
     this.setState({ current });
-  }
+  };
 
   componentDidMount() {
     this.setState({
@@ -77,32 +84,26 @@ class Introduction extends Component {
           </Card>
           <Card className="text-right">
             <h2>标注步骤介绍</h2>
-            <p>标注步骤介绍</p>
-            <Steps current={current}>
-              {steps.map(item => (
-                <Step key={item.title} title={item.title} />
-                )
-                )
-              }
-            </Steps>
-        <div className="steps-content">{steps[current].content}</div>
-        <div className="steps-action">
-          {current < steps.length - 1 && (
-            <Button type="primary" onClick={() => this.next()}>
-              下一步
-            </Button>
-          )}
-          {current === steps.length - 1 && (
-            <Button type="primary" onClick={() => message.success('Processing complete!')}>
-              完成
-            </Button>
-          )}
-          {current > 0 && (
-            <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-              上一步
-            </Button>
-          )}
-        </div>
+
+
+        {/* <Card
+          style={{ width: '100%' }}
+          title="标注步骤介绍"
+          extra={<a href="#">More</a>}
+          tabList={tabList}
+          activeTabKey={this.state.key}
+          onTabChange={key => {
+            this.onTabChange(key, 'key');
+          }}
+        >
+          {contentList[this.state.key]}
+        </Card> */}
+        <Steps current={current} onChange={this.onChange} direction="vertical">
+          <Step title="第一步" description="对新患者进行操作时，需新建患者信息" />
+          <Step title="第二步" description="在“患者信息管理”界面对患者添加测试任务，填写相关信息" />
+          <Step title="第三步" description="若添加的为WCST任务，实验结束后在“标注信息管理”界面更新测试信息" />
+          <Step title="第四步" description="在“标注信息管理”界面的对应条目下，点击数据存储关联，进行数据关联，匹配对应的红外图像" />
+        </Steps>
           </Card>
         </div>
       </div>
