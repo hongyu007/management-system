@@ -80,7 +80,7 @@ class Introduction extends Component {
         <div className="text">
           <Card className="text-left">
             <h2>数据采集系统介绍</h2>
-            <p>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</p>
+            <h3>本系统的主要功能是，对失眠障碍患者的近红外数据进行采集，同时结合其相关疾情信息，用人工智能的方法来分析其内在关系。<br />希冀能够找到相应的联系，让机器能自动通过近红外采集信息来辅助医师对睡眠障碍患者进行诊疗。</h3>
           </Card>
           <Card className="text-right">
             <h2>标注步骤介绍</h2>
@@ -101,7 +101,7 @@ class Introduction extends Component {
         <Steps current={current} onChange={this.onChange} direction="vertical">
           <Step title="第一步" description="对新患者进行操作时，需新建患者信息" />
           <Step title="第二步" description="在“患者信息管理”界面对患者添加测试任务，填写相关信息" />
-          <Step title="第三步" description="若添加的为WCST任务，实验结束后在“标注信息管理”界面更新测试信息" />
+          <Step title="第三步" description="若添加的为WCST任务，实验结束后在“标注信息管理”界面填写可观测指标" />
           <Step title="第四步" description="在“标注信息管理”界面的对应条目下，点击数据存储关联，进行数据关联，匹配对应的红外图像" />
         </Steps>
           </Card>
